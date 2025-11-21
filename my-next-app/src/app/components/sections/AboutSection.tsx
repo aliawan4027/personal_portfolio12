@@ -2,10 +2,10 @@ export function AboutSection() {
   return (
     <section
       id="about"
-      className="bg-[#f8fafc] py-16 text-slate-900"
+      className="py-16 bg-[var(--background)] text-[var(--foreground)]"
     >
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           About & Career Objective
         </h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700">

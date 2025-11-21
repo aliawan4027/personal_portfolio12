@@ -2,9 +2,9 @@ import { publications } from "@/src/lib/portfolioData";
 
 export function PublicationsSection() {
   return (
-    <section id="publications" className="bg-white py-16">
+    <section id="publications" className="py-16 bg-[var(--background)]">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           Publications
         </h2>
         <div className="mt-6 grid gap-4 md:grid-cols-2">

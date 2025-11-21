@@ -27,9 +27,9 @@ export function ProjectsShowcase() {
   const featured = projects.find((p) => p.isFeatured);
 
   return (
-    <section id="projects" className="bg-[#f8fafc] py-16">
+    <section id="projects" className="py-16 bg-[var(--background)]">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           Projects & Research
         </h2>
         <p className="mt-2 text-sm text-slate-600">

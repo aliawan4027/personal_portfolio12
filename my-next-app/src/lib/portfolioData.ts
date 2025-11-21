@@ -10,9 +10,9 @@ export const heroData = {
     ],
     pitch:
         "Leveraging technical skills in software engineering and AI to develop innovative solutions and contribute to impactful projects in a dynamic environment.",
-    phone: "+923109766879",
+    phone: "03109766879",
     email: "aliawan1170@gmail.com",
-    city: "Rawalpindi, Askari 14",
+    city: "Rawalpindi",
     linkedin: "https://www.linkedin.com/in/muhammad-ali-b64386264/",
     resumeUrl: "/assets/resume.pdf",
     profileImage: "/assets/dp.jpg",
@@ -45,6 +45,7 @@ export const skillCategories: SkillCategory[] = [
             "RAG",
             "LLM (Llama)",
             "YOLO",
+            "Hugging Face",
             "Google Colab",
             "Kaggle",
         ].map((name) => ({ id: name.toLowerCase().replace(/[^a-z0-9]+/g, "-"), name })),
@@ -98,7 +99,7 @@ export const experiences: Experience[] = [
         id: "lads-technology-seo",
         company: "Lads Technology",
         position: "SEO Specialist",
-        period: "Jul 2025 – Present",
+        period: "Nov 2025 – Present",
         description:
             "Driving organic growth, technical SEO, and analytics‑driven strategies for digital products.",
         technologies: ["SEO", "Semrush", "HubSpot", "Analytics"],
@@ -108,7 +109,7 @@ export const experiences: Experience[] = [
         id: "inotech-ai-intern",
         company: "InoTech Solutions",
         position: "AI Intern",
-        period: "Jul 2025 – Present",
+        period: "Jun 2025 – Oct 2025",
         description:
             "Working on AI solutions using Python, model training, RAG, LLMs, Docker, Ollama, Meta Llama models, YOLO, AWS, and Odoo.",
         technologies: [
@@ -132,16 +133,18 @@ export const experiences: Experience[] = [
         description:
             "Media‑focused internship; served as class representative (CR) for the entire Rawalpindi batch.",
         technologies: ["Media", "Coordination", "Communication"],
+        certificateUrl: "/assets/ISPR Certificate.jpg",
         current: false,
     },
     {
         id: "tech-net-cloud",
         company: "Tech Net Cloud",
         position: "Web Developer (Remote)",
-        period: "Jun 2024 – Aug 2024",
+        period: "Jun 2024 – Sep 2024",
         description:
             "Worked on web‑based projects including personal portfolio websites using modern web stacks.",
         technologies: ["Next.js", "React", "HTML", "CSS"],
+        certificateUrl: "/assets/TECHNET CLOUD.pdf",
         current: false,
     },
     {
@@ -152,6 +155,7 @@ export const experiences: Experience[] = [
         description:
             "Observed Huawei telecommunication systems and workflows, gaining exposure to large‑scale network operations.",
         technologies: ["Telecom", "Huawei Systems"],
+        certificateUrl: "/assets/SCO Certificate.jpg",
         current: false,
     },
     {
@@ -162,6 +166,7 @@ export const experiences: Experience[] = [
         description:
             "Developed and maintained Flutter‑based internal applications for DHA Multan.",
         technologies: ["Flutter", "Firebase"],
+        certificateUrl: "/assets/DHA Multan.jpg",
         current: false,
     },
     {
@@ -316,7 +321,7 @@ export const projects: Project[] = [
         description:
             "Multiple websites built with Next.js featuring responsive UI, plus hands-on work with Python, RAG pipelines, LLMs, and YOLO models for object detection.",
         technologies: ["Next.js", "React", "TypeScript", "Python", "RAG", "YOLO"],
-        category: "web",
+        category: "ai-ml",
         isFeatured: false,
     },
 ];
@@ -342,14 +347,14 @@ export const educations: Education[] = [
         id: "aps-kohat",
         institution: "APS Kohat",
         degree: "F.Sc (Pre‑Engineering: Physics, Chemistry, Mathematics)",
-        period: "2019 – 2021",
+        period: "2018 – 2021",
         description: "Secured 63% overall.",
     },
     {
         id: "aps-sgd",
         institution: "APS SGD",
         degree: "Matriculation (Physics, Chemistry, Computer Science)",
-        period: "2017 – 2018",
+        period: "2016 – 2018",
         description: "Secured 83% overall.",
     },
 ];
@@ -358,20 +363,26 @@ export const achievements: Achievement[] = [
     {
         id: "open-house-fyp",
         title: "3rd Place in Open House FYP (2025)",
-        description: "Recognized for outstanding final year project in software engineering.",
+        description:
+            "Final Year Project 'SignEase' – an AI-based voice and sign recognition app that secured 3rd position in the NUML Open House 2025.",
         year: "2025",
         type: "academic",
+        assetUrl: "/assets/3rd position open house numl.jpg",
     },
     {
         id: "swimming-medals",
         title: "Swimming Medals",
-        description: "Multiple medals in competitive swimming events.",
+        description:
+            "Won three medals at garrison-level swimming competitions in 2022: gold in freestyle, silver in medley race, and bronze in backstroke.",
+        year: "2022",
         type: "sport",
     },
     {
         id: "basketball-award",
         title: "Basketball Award",
-        description: "Awarded for excellence in university basketball.",
+        description:
+            "Awarded Best Player of the Tournament trophy in garrison-level basketball competition.",
+        year: "2021",
         type: "sport",
     },
 ];
@@ -382,18 +393,21 @@ export const certifications: Certification[] = [
         title: "Flutter Essential Training: Build for Multiple Platforms",
         issuer: "Online Platform",
         category: "development",
+        assetUrl: "/assets/flutter certificate.jpg",
     },
     {
         id: "react-great-learning",
         title: "React JS Tutorials",
         issuer: "Great Learning",
         category: "development",
+        assetUrl: "/assets/react js certificate.jpg",
     },
     {
         id: "html-css-openweaver",
         title: "HTML and CSS Basics",
         issuer: "Open Weaver",
         category: "development",
+        assetUrl: "/assets/html and css basics.pdf",
     },
     {
         id: "wix-coursera",
@@ -406,30 +420,35 @@ export const certifications: Certification[] = [
         title: "Organic Marketing",
         issuer: "Coursera",
         category: "seo",
+        assetUrl: "/assets/organic marketing certificate.pdf",
     },
     {
         id: "seo-foundations",
         title: "SEO Foundations",
         issuer: "David Booth / LinkedIn Learning",
         category: "seo",
+        assetUrl: "/assets/SEO FOUNDATIONS.jpg",
     },
     {
         id: "semrush-1",
         title: "Semrush SEO Certification",
         issuer: "Semrush",
         category: "seo",
+        assetUrl: "/assets/SEO Certificate1.pdf",
     },
     {
         id: "semrush-2",
         title: "Semrush Advanced SEO Course",
         issuer: "Semrush",
         category: "seo",
+        assetUrl: "/assets/SEO CERTIFICATE 2.pdf",
     },
     {
         id: "hubspot-seo",
         title: "SEO Certification",
         issuer: "HubSpot",
         category: "seo",
+        assetUrl: "/assets/hubspot certificate.jpg",
     },
 ];
 
@@ -441,6 +460,6 @@ export const publications: Publication[] = [
         year: "2025",
         description:
             "Research paper accepted for presentation at IEEE CMT 2025, describing the design and evaluation of the SignEase application.",
-        link: "#",
+        link: "/assets/FINAL MENUSCRIPT SIGNEASE IEEECMT revision id 83.pdf",
     },
 ];

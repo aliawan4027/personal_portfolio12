@@ -19,6 +19,7 @@ export interface Experience {
     description: string;
     technologies: string[];
     current: boolean;
+    certificateUrl?: string;
 }
 
 export interface Education {
@@ -35,6 +36,7 @@ export interface Achievement {
     description: string;
     year?: string;
     type?: 'academic' | 'sport' | 'professional';
+    assetUrl?: string;
 }
 
 export interface Certification {
@@ -43,6 +45,7 @@ export interface Certification {
     issuer: string;
     year?: string;
     category?: 'seo' | 'development' | 'ai-ml' | 'other';
+    assetUrl?: string;
 }
 
 export interface Publication {

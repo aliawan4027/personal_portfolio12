@@ -2,7 +2,7 @@ import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200 mt-16">
+    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-sm font-semibold">Muhammad Ali</p>
@@ -13,7 +13,7 @@ export function Footer() {
         <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
           <div className="inline-flex items-center gap-1">
             <Phone className="h-3 w-3" />
-            <span>03467648259</span>
+            <span>03109766879</span>
           </div>
           <div className="inline-flex items-center gap-1">
             <Mail className="h-3 w-3" />
@@ -21,7 +21,7 @@ export function Footer() {
           </div>
           <div className="inline-flex items-center gap-1">
             <MapPin className="h-3 w-3" />
-            <span>Islamabad, Pakistan</span>
+            <span>Rawalpindi</span>
           </div>
           <a
             href="https://www.linkedin.com/in/muhammad-ali-b64386264/" 

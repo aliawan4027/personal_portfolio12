@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 export function ExperienceTimeline() {
   return (
-    <section id="experience" className="bg-white py-16">
+    <section id="experience" className="py-16 bg-[var(--background)]">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
+        <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           Professional Experience
         </h2>
         <p className="mt-2 text-sm text-slate-600">
@@ -41,15 +41,27 @@ export function ExperienceTimeline() {
                 )}
               </div>
               <p className="mt-2 text-xs text-slate-700">{exp.description}</p>
-              <div className="mt-3 flex flex-wrap gap-1">
-                {exp.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700"
+              <div className="mt-3 flex flex-wrap items-center gap-2">
+                <div className="flex flex-wrap gap-1">
+                  {exp.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] text-slate-700"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                {exp.certificateUrl && (
+                  <a
+                    href={exp.certificateUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-[11px] font-medium text-[#3b82f6] hover:underline"
                   >
-                    {tech}
-                  </span>
-                ))}
+                    View Certificate
+                  </a>
+                )}
               </div>
             </motion.div>
           ))}

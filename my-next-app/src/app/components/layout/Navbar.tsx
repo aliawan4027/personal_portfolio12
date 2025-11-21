@@ -30,7 +30,12 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 bg-[#0f172a]/80 backdrop-blur border-b border-white/10">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 text-slate-100">
-        <div className="font-semibold tracking-tight">Muhammad Ali</div>
+        <a
+          href="/"
+          className="font-semibold tracking-tight hover:text-[#3b82f6] transition-colors"
+        >
+          Muhammad Ali
+        </a>
         <div className="hidden gap-6 text-sm md:flex">
           {sections.map((s) => (
             <a

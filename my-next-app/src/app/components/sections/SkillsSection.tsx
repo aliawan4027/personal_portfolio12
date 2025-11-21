@@ -10,7 +10,7 @@ export function SkillsSection() {
   const active = skillCategories.find((c) => c.id === activeId) ?? skillCategories[0];
 
   return (
-    <section id="skills" className="bg-[#f8fafc] py-16">
+    <section id="skills" className="py-16 bg-[var(--background)]">
       <div className="mx-auto max-w-6xl px-4">
         <h2 className="text-2xl font-semibold tracking-tight text-[#0f172a]">
           Technical Skills
