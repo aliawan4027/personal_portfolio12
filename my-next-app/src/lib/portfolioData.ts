@@ -14,7 +14,7 @@ export const heroData = {
     email: "aliawan1170@gmail.com",
     city: "Rawalpindi",
     linkedin: "https://www.linkedin.com/in/muhammad-ali-b64386264/",
-    resumeUrl: "/assets/resume.pdf",
+    resumeUrl: "/assets/Muhammad%20Ali%20Resume.pdf",
     profileImage: "/assets/dp.jpg",
 };
 
