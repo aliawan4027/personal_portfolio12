@@ -17,17 +17,37 @@ export default function Home() {
     <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
       <ThemeToggle />
       <Navbar />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ExperienceTimeline />
-        <ProjectsShowcase />
-        <EducationSection />
-        <CertificationsSection />
-        <PublicationsSection />
-        <AchievementsSection />
-        <ContactSection />
+      <main className="space-y-16">
+        <section className="max-w-6xl mx-auto px-4">
+          <HeroSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <AboutSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <SkillsSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <ExperienceTimeline />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <ProjectsShowcase />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <EducationSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <CertificationsSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <PublicationsSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <AchievementsSection />
+        </section>
+        <section className="max-w-6xl mx-auto px-4">
+          <ContactSection />
+        </section>
       </main>
       <Footer />
     </div>

@@ -188,6 +188,7 @@ export const projects: Project[] = [
         title: "SIGNEASE – AI Voice & Sign Recognition App",
         description:
             "Flagship AI-based mobile application for voice and sign recognition, accepted as an IEEE research paper.",
+        image: "/assets/dummy/machine_learning_projects.webp",
         technologies: ["Flutter", "Python", "AI", "Firebase", "TensorFlow"],
         category: "ai-ml",
         isFeatured: true,
@@ -198,6 +199,7 @@ export const projects: Project[] = [
         title: "SignLang App – AI Sign Language Translator",
         description:
             "Final year project (3rd position in Open House): an AI-powered sign language translation app built with Flutter, using ASL dataset and MobileNetV4 for real-time recognition.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Python", "TensorFlow", "MobileNetV4", "Firebase"],
         category: "mobile",
         isFeatured: false,
@@ -208,6 +210,7 @@ export const projects: Project[] = [
         title: "CarX – Car Booking Application",
         description:
             "End-to-end vehicle booking platform with authentication, booking management, and real-time status tracking.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Firebase", "REST APIs"],
         category: "mobile",
         isFeatured: false,
@@ -217,6 +220,7 @@ export const projects: Project[] = [
         title: "JobQuest – Job Search Platform",
         description:
             "Job search and recommendation app helping users discover and apply to relevant opportunities seamlessly.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Firebase", "AI", "Recommendation Systems"],
         category: "mobile",
         isFeatured: false,
@@ -226,6 +230,7 @@ export const projects: Project[] = [
         title: "AddSpotter – Billboard Posting & Tracking",
         description:
             "Location-based billboard posting and tracking app for planning and monitoring advertising campaigns.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Maps SDK", "Geo-location"],
         category: "mobile",
         isFeatured: false,
@@ -235,6 +240,7 @@ export const projects: Project[] = [
         title: "TicTacToe Game",
         description:
             "Interactive two-player TicTacToe game with a clean UI and encapsulated game logic.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter"],
         category: "mobile",
         isFeatured: false,
@@ -244,6 +250,7 @@ export const projects: Project[] = [
         title: "ChatApp – Real-time Messaging",
         description:
             "Real-time chat application enabling communication between users using Firebase as backend.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Firebase", "Realtime Database"],
         category: "mobile",
         isFeatured: false,
@@ -253,6 +260,7 @@ export const projects: Project[] = [
         title: "FoodBridge – Food Redistribution Platform (In Progress)",
         description:
             "In-progress platform aimed at reducing food waste by connecting donors with nearby recipients.",
+        image: "/assets/dummy/mobileapps.webp",
         technologies: ["Flutter", "Firebase", "Maps SDK"],
         category: "mobile",
         isFeatured: false,
@@ -262,6 +270,7 @@ export const projects: Project[] = [
         id: "journal-website",
         title: "Journal Website",
         description: "Academic journal website built with Next.js.",
+        image: "/assets/dummy/Web-Development-Projects.png",
         technologies: ["Next.js", "React", "TypeScript"],
         category: "web",
         isFeatured: false,
@@ -270,6 +279,7 @@ export const projects: Project[] = [
         id: "dynamic-portfolio-php",
         title: "Dynamic Portfolio (PHP)",
         description: "Dynamic personal portfolio built with PHP and MySQL.",
+        image: "/assets/dummy/Web-Development-Projects.png",
         technologies: ["PHP", "MySQL", "HTML", "CSS"],
         category: "web",
         isFeatured: false,
@@ -278,6 +288,7 @@ export const projects: Project[] = [
         id: "todo-react",
         title: "To-Do List (React)",
         description: "Modern to-do list application using React.",
+        image: "/assets/dummy/Web-Development-Projects.png",
         technologies: ["React", "TypeScript"],
         category: "web",
         isFeatured: false,
@@ -286,6 +297,7 @@ export const projects: Project[] = [
         id: "student-management",
         title: "Student Management System",
         description: "CLI-based student management system in C++.",
+        image: "/assets/dummy/acadamic projects.jpg",
         technologies: ["C++"],
         category: "academic",
         isFeatured: false,
@@ -294,6 +306,7 @@ export const projects: Project[] = [
         id: "train-reservation",
         title: "Train Reservation System",
         description: "Data-structures heavy train reservation system in C++.",
+        image: "/assets/dummy/acadamic projects.jpg",
         technologies: ["C++", "DSA"],
         category: "academic",
         isFeatured: false,
@@ -302,6 +315,7 @@ export const projects: Project[] = [
         id: "ping-pong-java",
         title: "Ping Pong Game (Java)",
         description: "2D ping pong game implemented in Java.",
+        image: "/assets/dummy/acadamic projects.jpg",
         technologies: ["Java"],
         category: "academic",
         isFeatured: false,
@@ -310,6 +324,7 @@ export const projects: Project[] = [
         id: "water-filtration-db",
         title: "Water Filtration Database",
         description: "Relational database for a water filtration plant.",
+        image: "/assets/dummy/acadamic projects.jpg",
         technologies: ["SQL"],
         category: "academic",
         isFeatured: false,
@@ -320,6 +335,7 @@ export const projects: Project[] = [
         title: "AI & Web Experiments",
         description:
             "Multiple websites built with Next.js featuring responsive UI, plus hands-on work with Python, RAG pipelines, LLMs, and YOLO models for object detection.",
+        image: "/assets/dummy/machine_learning_projects.webp",
         technologies: ["Next.js", "React", "TypeScript", "Python", "RAG", "YOLO"],
         category: "ai-ml",
         isFeatured: false,
