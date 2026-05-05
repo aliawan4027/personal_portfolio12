@@ -114,6 +114,7 @@ export const experiences: Experience[] = [
         description:
             "Drive organic growth through technical SEO audits, keyword strategy, and data-driven optimisation campaigns. Leverage Semrush and HubSpot Analytics to increase search visibility and improve domain authority for client digital products.",
         technologies: ["SEO", "Semrush", "HubSpot", "Analytics"],
+        certificateUrl: "/assets/Lads%20Certificate.pdf",
         current: true,
     },
     {
@@ -145,6 +146,7 @@ export const experiences: Experience[] = [
             "AWS",
             "Odoo",
         ],
+        certificateUrl: "/assets/inotech%20certificate.jpeg",
         current: false,
     },
     {

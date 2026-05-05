@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://personalportfolio12.vercel.app/sitemap.xml

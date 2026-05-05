@@ -1,11 +1,38 @@
+"use client";
+
 import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { motion } from "framer-motion";
+import { useReducedMotion } from "../../../hooks/useReducedMotion";
 
 export function Footer() {
+  const reducedMotion = useReducedMotion();
+
+  const socialLinks = [
+    {
+      icon: Linkedin,
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/muhammad-ali-b64386264/",
+      color: "#0A66C2",
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      href: "https://github.com/aliawan4027",
+      color: "#8B5CF6",
+    },
+    {
+      icon: Github,
+      label: "GitHub (Alt)",
+      href: "https://github.com/softwareengineer698-glitch",
+      color: "#6366F1",
+    },
+  ];
+
   return (
-    <footer className="border-t border-slate-200 bg-slate-950 text-slate-200">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t border-border/20 bg-slate-950 text-slate-200">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-sm font-semibold">Muhammad Ali</p>
+          <p className="text-sm font-semibold font-mono">Muhammad Ali</p>
           <p className="text-xs text-slate-400">
             Software Engineer · AI Developer · App Developer
           </p>
@@ -23,34 +50,41 @@ export function Footer() {
             <MapPin className="h-3 w-3" />
             <span>Rawalpindi</span>
           </div>
-          <a
-            href="https://www.linkedin.com/in/muhammad-ali-b64386264/" 
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-[#3b82f6]"
-          >
-            <Linkedin className="h-3 w-3" />
-            <span>LinkedIn</span>
-          </a>
-          <a
-            href="https://github.com/aliawan4027"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-[#3b82f6]"
-          >
-            <Github className="h-3 w-3" />
-            <span>GitHub</span>
-          </a>
-          <a
-            href="https://github.com/softwareengineer698-glitch"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1 hover:text-[#3b82f6]"
-          >
-            <Github className="h-3 w-3" />
-            <span>GitHub (Alt)</span>
-          </a>
+          {socialLinks.map((link) => {
+            const Icon = link.icon;
+            return (
+              <motion.a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1 transition-colors duration-300"
+                style={{ color: "inherit" }}
+                whileHover={
+                  reducedMotion
+                    ? {}
+                    : {
+                        scale: 1.15,
+                        color: link.color,
+                        filter: `drop-shadow(0 0 8px ${link.color})`,
+                      }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                aria-label={`Visit ${link.label}`}
+              >
+                <Icon className="h-3 w-3" />
+                <span>{link.label}</span>
+              </motion.a>
+            );
+          })}
         </div>
+      </div>
+      <div className="border-t border-border/10 py-4 text-center text-[10px] text-slate-500">
+        © {new Date().getFullYear()} Muhammad Ali. All rights reserved.
       </div>
     </footer>
   );

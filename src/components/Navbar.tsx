@@ -1,30 +1,23 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageSelector } from "./LanguageSelector";
 import { useLanguage } from "../contexts/LanguageContext";
 import { heroData } from "@/src/lib/portfolioData";
+import { useReducedMotion } from "../hooks/useReducedMotion";
 
 export function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const reducedMotion = useReducedMotion();
   const { t } = useLanguage();
-
-  // Check for reduced motion preference
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mediaQuery.matches);
-    
-    const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
+  const { scrollY } = useScroll();
 
   // Memoize nav items to prevent unnecessary re-renders
   const navItems = useMemo(() => [
@@ -38,44 +31,45 @@ export function Navbar() {
     { name: t('nav.contact'), href: "#contact" },
   ], [t]);
 
-  // Optimized scroll handler with throttling
+  // Track active section with IntersectionObserver
   useEffect(() => {
-    let ticking = false;
-    
-    const handleScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          // Auto-hide on scroll down, show on scroll up
-          if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            setIsVisible(false);
-          } else {
-            setIsVisible(true);
-          }
-          
-          // Add background when scrolled
-          setIsScrolled(currentScrollY > 20);
-          
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+    const observers: IntersectionObserver[] = [];
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${id}`);
+          }
+        },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
+  }, [navItems]);
+
+  // Optimized scroll handler with useMotionValueEvent
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsVisible(latest <= lastScrollY || latest < 100);
+    setIsScrolled(latest > 50);
+    setLastScrollY(latest);
+  });
 
   // Optimized scroll to section with smooth behavior
   const scrollToSection = useCallback((href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
+      element.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
     }
     setIsMobileMenuOpen(false);
-  }, []);
+  }, [reducedMotion]);
 
   // Close mobile menu on escape key
   useEffect(() => {
@@ -93,25 +87,23 @@ export function Navbar() {
     <>
       <AnimatePresence>
         <motion.header
+          id="navigation"
           initial={{ y: -100 }}
-          animate={{ 
+          animate={{
             y: isVisible ? 0 : -100,
-            backgroundColor: isScrolled ? "rgb(var(--background) / 0.9)" : "transparent"
           }}
           exit={{ y: -100 }}
-          transition={{ 
-            duration: reducedMotion ? 0 : 0.3, 
+          transition={{
+            duration: reducedMotion ? 0 : 0.3,
             ease: "easeInOut",
-            backgroundColor: { duration: 0.2 }
           }}
           className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-            isScrolled 
-              ? "backdrop-blur-md border-b border-border/20 shadow-premium" 
+            isScrolled
+              ? "backdrop-blur-md bg-white/10 dark:bg-black/20 border-b border-border/20 shadow-premium"
               : ""
           }`}
-          style={{ willChange: reducedMotion ? 'auto' : 'transform, background-color' }}
         >
-          <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Main navigation">
             <div className="flex items-center justify-between h-16">
               {/* Logo - Optimized for touch */}
               <motion.div
@@ -150,9 +142,9 @@ export function Navbar() {
                 </a>
               </motion.div>
 
-              {/* Desktop Navigation */}
+              {/* Desktop Navigation with active pill */}
               <div className="hidden md:flex-1 md:flex md:justify-center md:items-center">
-                <div className="flex items-baseline space-x-6">
+                <div className="flex items-baseline space-x-1 relative">
                   {navItems.map((item, index) => (
                     <motion.a
                       key={item.name}
@@ -161,26 +153,35 @@ export function Navbar() {
                         e.preventDefault();
                         scrollToSection(item.href);
                       }}
-                      className="relative text-foreground hover:text-accent px-3 py-2 text-sm font-medium font-mono transition-colors duration-300 group whitespace-nowrap rounded-lg hover:bg-accent/10 focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                      className={`relative text-foreground px-3 py-2 text-sm font-medium font-mono transition-colors duration-300 whitespace-nowrap rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/50 ${
+                        activeSection === item.href
+                          ? "text-accent"
+                          : "hover:text-accent hover:bg-accent/10"
+                      }`}
                       initial={{ opacity: 0, y: -20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ 
-                        duration: reducedMotion ? 0 : 0.5, 
-                        delay: reducedMotion ? 0 : index * 0.1 
+                      transition={{
+                        duration: reducedMotion ? 0 : 0.5,
+                        delay: reducedMotion ? 0 : index * 0.05
                       }}
-                      whileHover={{ scale: reducedMotion ? 1 : 1.05 }}
-                      whileTap={{ scale: 0.98 }}
                       aria-label={`Navigate to ${item.name} section`}
+                      aria-current={activeSection === item.href ? "true" : undefined}
                     >
                       {item.name}
-                      {/* Green underline effect */}
-                      {!reducedMotion && (
+                      {/* Active section pill indicator */}
+                      {activeSection === item.href && !reducedMotion && (
                         <motion.div
-                          className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-green-500/0 via-green-500 to-green-500/0 origin-center"
-                          initial={{ scaleX: 0 }}
-                          whileHover={{ scaleX: 1 }}
-                          transition={{ duration: 0.3, ease: "easeOut" }}
+                          className="absolute bottom-0 left-1 right-1 h-[2px] bg-accent rounded-full"
+                          layoutId="nav-pill"
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
                         />
+                      )}
+                      {activeSection === item.href && reducedMotion && (
+                        <div className="absolute bottom-0 left-1 right-1 h-[2px] bg-accent rounded-full" />
                       )}
                     </motion.a>
                   ))}
@@ -252,9 +253,9 @@ export function Navbar() {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ 
-                type: reducedMotion ? "tween" : "spring", 
-                damping: 25, 
+              transition={{
+                type: reducedMotion ? "tween" : "spring",
+                damping: 25,
                 stiffness: 200,
                 duration: reducedMotion ? 0 : 0.5
               }}
@@ -275,29 +276,20 @@ export function Navbar() {
                         e.preventDefault();
                         scrollToSection(item.href);
                       }}
-                      className="block px-4 py-3 rounded-lg text-foreground hover:text-accent hover:bg-accent/20 font-mono text-sm transition-all duration-300 group focus:outline-none focus:ring-2 focus:ring-green-500/50 min-h-[44px] flex items-center"
+                      className={`block px-4 py-3 rounded-lg font-mono text-sm transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-500/50 min-h-[44px] flex items-center ${
+                        activeSection === item.href
+                          ? "text-accent bg-accent/10 border-l-2 border-accent"
+                          : "text-foreground hover:text-accent hover:bg-accent/20"
+                      }`}
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ 
-                        duration: reducedMotion ? 0 : 0.3, 
-                        delay: reducedMotion ? 0 : 0.1 + index * 0.05 
+                      transition={{
+                        duration: reducedMotion ? 0 : 0.3,
+                        delay: reducedMotion ? 0 : 0.1 + index * 0.05
                       }}
-                      whileHover={{ scale: reducedMotion ? 1 : 1.02, x: reducedMotion ? 0 : 5 }}
-                      whileTap={{ scale: 0.98 }}
                       aria-label={`Navigate to ${item.name} section`}
                     >
-                      <span className="relative">
-                        {item.name}
-                        {/* Green accent on hover */}
-                        {!reducedMotion && (
-                          <motion.div
-                            className="absolute inset-0 rounded bg-gradient-to-r from-green-500/0 via-green-500/10 to-green-500/0 -z-10"
-                            initial={{ opacity: 0 }}
-                            whileHover={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
-                      </span>
+                      {item.name}
                     </motion.a>
                   ))}
                 </motion.div>

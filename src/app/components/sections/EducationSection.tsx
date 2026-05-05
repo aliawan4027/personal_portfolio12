@@ -12,7 +12,7 @@ export function EducationSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="education" className="relative py-20">
+    <section id="education" className="relative py-20" aria-labelledby="education-heading">
       {/* Background Beams */}
       <BackgroundBeams className="absolute inset-0" />
       
@@ -34,7 +34,8 @@ export function EducationSection() {
           >
             {t('education.title')}
           </motion.p>
-          <motion.h2 
+          <motion.h2
+            id="education-heading"
             className="text-3xl md:text-4xl font-semibold text-foreground font-mono mt-2 mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

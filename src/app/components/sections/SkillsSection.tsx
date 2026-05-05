@@ -8,6 +8,7 @@ import { TiltCard } from "../../../components/TiltCard";
 import { BackgroundBeams } from "../../../components/BackgroundBeams";
 import { RandomColorCard } from "../../../components/ui/RandomColorCard";
 import { SkillModal } from "../../../components/SkillModal";
+import { useReducedMotion } from "../../../hooks/useReducedMotion";
 
 interface Skill {
   id: string;
@@ -22,6 +23,7 @@ interface SkillCategory {
 
 export function SkillsSection() {
   const { t } = useLanguage();
+  const reducedMotion = useReducedMotion();
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedSkill, setSelectedSkill] = useState<{ name: string; description: string } | null>(null);
 
@@ -48,17 +50,17 @@ export function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="relative py-20">
+    <section id="skills" className="relative py-20" aria-labelledby="skills-heading">
       {/* Background Beams */}
       <BackgroundBeams className="absolute inset-0" />
       
       <div className="relative z-10 max-w-6xl mx-auto px-4">
         {/* Section header with monofont */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: reducedMotion ? 0 : 0.8 }}
           className="text-center mb-16"
         >
           <motion.p 
@@ -70,12 +72,13 @@ export function SkillsSection() {
           >
             {t('skills.title')}
           </motion.p>
-          <motion.h2 
+          <motion.h2
+            id="skills-heading"
             className="text-3xl md:text-4xl font-semibold text-foreground font-mono mt-2 mb-4"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.3 }}
           >
             {t('skills.subtitle')}
           </motion.h2>
@@ -93,10 +96,10 @@ export function SkillsSection() {
         {/* Category filters */}
         <motion.div
           className="flex flex-wrap justify-center gap-3 mb-12"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.5 }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.5 }}
         >
           {categories.map((category) => (
             <motion.button
@@ -107,7 +110,7 @@ export function SkillsSection() {
                   ? "bg-accent text-accent-foreground"
                   : "bg-muted text-muted-foreground hover:bg-accent/20 hover:text-foreground"
               }`}
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: reducedMotion ? 1 : 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               {category.name}
@@ -121,17 +124,17 @@ export function SkillsSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.6 }}
         >
           {filteredSkills.map((skill: Skill, index: number) => (
             <motion.div
               key={skill.id}
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: reducedMotion ? 1 : 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ 
-                duration: 0.5, 
-                delay: 0.1 * index,
+                duration: reducedMotion ? 0 : 0.5, 
+                delay: reducedMotion ? 0 : 0.1 * index,
                 type: "spring",
                 stiffness: 200
               }}
@@ -147,7 +150,7 @@ export function SkillsSection() {
                   <div className="relative z-10">
                     <motion.div
                       className="w-12 h-12 mb-4 rounded-lg bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center group-hover:from-accent/30 group-hover:to-accent/10 transition-all duration-300"
-                      whileHover={{ rotate: 360 }}
+                      whileHover={{ rotate: reducedMotion ? 0 : 360 }}
                       transition={{ duration: 0.6 }}
                     >
                       <span className="text-2xl">💻</span>
@@ -176,21 +179,23 @@ export function SkillsSection() {
         </motion.div>
 
         {/* Ambient floating animation */}
-        <motion.div
-          className="absolute inset-0 pointer-events-none"
-          animate={{
-            background: [
-              "radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
-              "radial-gradient(circle at 80% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
-              "radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
-            ],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
+        {!reducedMotion && (
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            animate={{
+              background: [
+                "radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 80% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
+                "radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.05) 0%, transparent 50%)",
+              ],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        )}
         
         {/* Skill Modal */}
         {selectedSkill && (
