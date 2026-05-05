@@ -16,7 +16,7 @@ export function useTextScramble(
   const [displayText, setDisplayText] = useState(texts[0] || "");
   const [currentIndex, setCurrentIndex] = useState(0);
   const frameRef = useRef<number>(0);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const scramble = useCallback(
     (target: string) => {
