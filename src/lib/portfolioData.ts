@@ -14,7 +14,6 @@ export const heroData = {
     city: "Rawalpindi",
     linkedin: "https://www.linkedin.com/in/muhammad-ali-b64386264/",
     github: "https://github.com/aliawan4027",
-    resumeUrl: "/assets/Muhammad%20Ali%20Resume.pdf",
     profileImage: "/assets/NewDp.png",
 };
 

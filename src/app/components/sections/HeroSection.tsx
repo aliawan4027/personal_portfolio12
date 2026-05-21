@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Mail, MapPin, Github, Linkedin, Download } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin } from "lucide-react";
 import { heroData } from "@/src/lib/portfolioData";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import { BackgroundBeams } from "../../../components/BackgroundBeams";
@@ -275,24 +275,7 @@ export function HeroSection() {
               Contact Me
             </ShinyButton>
           </motion.div>
-          
-          <motion.div
-            whileHover={{ scale: reducedMotion ? 1 : 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ShinyButton
-              href={heroData.resumeUrl}
-              variant="outline"
-              size="lg"
-              className="font-mono focus:outline-none focus:ring-2 focus:ring-green-500/50"
-              aria-label="Download resume"
-            >
-              <FloatingIcon delay={1} glowColor="rgb(245, 158, 11)" distance={2}>
-                <Download className="h-4 w-4 mr-2" />
-              </FloatingIcon>
-              Download Resume
-            </ShinyButton>
-          </motion.div>
+
         </motion.div>
       </div>
     </section>
