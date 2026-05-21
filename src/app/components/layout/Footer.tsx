@@ -1,6 +1,6 @@
 "use client";
 
-import { Mail, Phone, MapPin, Linkedin, Github } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github } from "lucide-react";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "../../../hooks/useReducedMotion";
 
@@ -39,12 +39,8 @@ export function Footer() {
         </div>
         <div className="flex flex-wrap items-center gap-4 text-xs text-slate-300">
           <div className="inline-flex items-center gap-1">
-            <Phone className="h-3 w-3" />
-            <span>03109766879</span>
-          </div>
-          <div className="inline-flex items-center gap-1">
             <Mail className="h-3 w-3" />
-            <span>aliawan1170@gmail.com</span>
+            <span>clashwithme1122@gmail.com</span>
           </div>
           <div className="inline-flex items-center gap-1">
             <MapPin className="h-3 w-3" />

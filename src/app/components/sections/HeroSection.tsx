@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Download } from "lucide-react";
 import { heroData } from "@/src/lib/portfolioData";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import { BackgroundBeams } from "../../../components/BackgroundBeams";
@@ -209,18 +209,6 @@ export function HeroSection() {
               <Mail className="h-4 w-4 group-hover:text-accent" />
             </FloatingIcon>
             {heroData.email}
-          </motion.a>
-          <motion.a
-            href={`tel:${heroData.phone}`}
-            className="flex items-center gap-2 hover:text-accent transition-colors duration-300 group focus:outline-none focus:ring-2 focus:ring-green-500/50 rounded px-2 py-1"
-            whileHover={{ scale: reducedMotion ? 1 : 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label={`Call ${heroData.phone}`}
-          >
-            <FloatingIcon delay={0.2} glowColor="rgb(16, 185, 129)">
-              <Phone className="h-4 w-4 group-hover:text-accent" />
-            </FloatingIcon>
-            {heroData.phone}
           </motion.a>
           <motion.div
             className="flex items-center gap-2 hover:text-accent transition-colors duration-300 group px-2 py-1"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { Mail, MapPin, Phone, Linkedin, Github, Send, MessageSquare, Check, Copy } from "lucide-react";
+import { Mail, MapPin, Linkedin, Github, Send, MessageSquare, Check, Copy } from "lucide-react";
 import { heroData } from "@/src/lib/portfolioData";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -123,12 +123,6 @@ export function ContactSection() {
       value: heroData.email,
       href: `mailto:${heroData.email}`,
       showCopy: true,
-    },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: heroData.phone,
-      href: `tel:${heroData.phone}`,
     },
     {
       icon: MapPin,

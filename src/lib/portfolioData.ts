@@ -10,8 +10,7 @@ export const heroData = {
     ],
     pitch:
         "MS Software Engineering student at NUST | Flutter Developer | AI/ML Engineer | IEEE Researcher. I build production-grade mobile apps, train AI models, and architect scalable full-stack solutions that deliver real-world impact.",
-    phone: "03109766879",
-    email: "aliawan1170@gmail.com",
+    email: "clashwithme1122@gmail.com",
     city: "Rawalpindi",
     linkedin: "https://www.linkedin.com/in/muhammad-ali-b64386264/",
     github: "https://github.com/aliawan4027",
